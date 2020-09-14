@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ProjectZ.Models.Database.Topic>
+@using System.Text.RegularExpressions
+@{
+    ViewBag.Title = "ბლოგი";
+}
+
+<div class="blog-section">
+    <h2 class="blogpage allTopics">
+        ბლოგი
+    </h2>
+
+    <div class="blog-list">
+        @foreach (var item in Model)
+        {
+            <div class="blog-box" style="cursor:pointer" onclick="document.location = '@Url.Action("Details","Topic")/@item.Id'">
+                <div class="blog-box--card">
+                    <h4 class="topicTitle">@item.Title</h4>
+                    <p>@item.CreationDate.ToShortDateString()</p>
+                    <img src="@item.Image.Path@item.Image.Name@item.Image.Extension">
+                    <p>@item.User.FirstName @item.User.LastName</p>
+                    <div class="blog-text">@Html.Raw(Regex.Matches(item.Text, "<p>(.*?)</p>").Cast<Match>().FirstOrDefault())</div>
+                    <input class="btn btn-success"style="margin-right:40px" type="button" value="მეტი" />
+                    <span class="commentcount">@item.TopicComments.Count() კომენტარი</span>                                        
+                </div>
+            </div>
+
+        }
+    </div>
+    <br />
+    <div>
+        <span>გვერდები: </span>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+    </div>
+</div>

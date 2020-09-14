@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ProjectZ.Models.Database.Topic>
+    @using System.Text.RegularExpressions
+@{
+    ViewBag.Title = "ჩემი პოსტები";
+}
+
+<h2 class="myTopics">ჩემი პოსტები</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>სათაური</th>
+        <th>პირველი აბზაცი</th>
+        <th>სურათი</th>
+        <th>შექმნის თარიღი</th>
+        <th>რედაქტირების თარიღი</th>
+        <th>მეტი</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@Html.Raw(Regex.Matches(item.Text, "<p>(.*?)</p>").Cast<Match>().FirstOrDefault())</td>
+            <td><img src="@item.Image.Path@item.Image.Name@item.Image.Extension" style="height:100px" /></td>
+            <td>@item.CreationDate</td>
+            <td>@item.LastEditDate</td>
+            <td><a href="~/Topic/Edit/@item.Id">რედაქტირება</a></td>
+        </tr>
+    }
+</table>

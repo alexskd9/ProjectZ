@@ -1,0 +1,46 @@
+﻿@model ProjectZ.Models.IndexPage
+@using System.Text.RegularExpressions
+@{
+    ViewBag.Title = "Z for Zoo";
+}
+<script src="~/Scripts/Button behaviour/AddToCart.js"></script>
+<script src="~/Scripts/Button behaviour/Favourites.js"></script>
+@*<div class="hero-image">
+    <div class="hero-text">
+        <h2>ონლაინ კონსულტაცია</h2>
+    </div>
+</div>*@
+<div class="products-section">
+    <h3 class="blog-header">კვირის პროდუქტები</h3>
+
+    <div class="product-row">
+        @foreach (var item in Model.Products)
+        {
+            <div class="product-container">
+                <img src="@item.Image.Path@item.Image.Name@item.Image.Extension" style="width:100%;">
+                <div class="top-left">@Math.Round(item.Price, 2) ₾</div>
+                <div class="bottom-left"><a href="~/Products/Details/@item.Id">@item.Name</a></div>
+                <div class="top-right"><i class="fa fa-heart AddToFavourite" data-userAuth="@User.Identity.IsAuthenticated.ToString()" data-productid="@item.Id"></i></div>
+                <div class="bottom-right"><i class="fa fa-shopping-bag AddToCart" data-userAuth="@User.Identity.IsAuthenticated.ToString()" data-productid="@item.Id"></i></div>
+            </div>
+        }
+    </div>
+</div>
+<div class="blog-section">
+    <h3 class="blog-header">ბლოგის სიახლეები</h3>
+    <div class="blog-desc">
+        @foreach (var item in Model.Topics)
+        {
+            <div class="blog-desc__container">
+                <div class="blog-card">
+                    <a target="_blank" href="~/Topic/Details/@item.Id">
+                        <img src="@item.Image.Path@item.Image.Name@item.Image.Extension"style="width:300px; height:200px">
+                    </a>
+                    <div class="desc">@item.Title</div>
+                </div>
+            </div>
+        }
+        </div>
+    <button class="more-blog-btn" onclick="document.location = '@Url.Action("AllTopics","Topic")'">მეტი</button>
+</div>
+

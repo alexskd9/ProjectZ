@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ProjectZ.Models.Database.Product>
+@{
+    ViewBag.Title = "AllProducts";
+}
+<script src="~/Scripts/Button behaviour/AddToCart.js"></script>
+<script src="~/Scripts/Button behaviour/Favourites.js"></script>
+<h2 class="shop">მაღაზია</h2>
+
+<div class="products-section">
+    <div class="product-row">
+        @foreach (var item in Model)
+        {
+            <div class="product-container">
+                <img src="@item.Image.Path@item.Image.Name@item.Image.Extension" style="width:100%;">
+                <div class="top-left">@Math.Round(item.Price, 2) ₾</div>
+                <div class="bottom-left"><a href="~/Products/Details/@item.Id">@item.Name</a></div>
+                <div class="top-right AddToFavourite" data-userAuth="@User.Identity.IsAuthenticated.ToString()" data-productid="@item.Id"><i class="fa fa-heart"></i></div>
+                <div class="bottom-right AddToCart" data-productid="@item.Id" data-userAuth="@User.Identity.IsAuthenticated.ToString()"><i class="fa fa-shopping-bag"></i></div>
+            </div>
+        }
+    </div>
+</div>
+

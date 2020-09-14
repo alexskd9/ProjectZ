@@ -1,0 +1,30 @@
+﻿@model ProjectZ.Models.TopicWithComments
+@{
+    ViewBag.Title = Model.Topic.Title;
+}
+<script src="~/Scripts/Button behaviour/Comment.js"></script>
+<h1 class="topicTitle">@Model.Topic.Title</h1>
+<p>@Model.Topic.CreationDate.ToShortDateString()</p>
+<img style="width:400px" src="@Model.Topic.Image.Path@Model.Topic.Image.Name@Model.Topic.Image.Extension" />
+<p>@Model.Topic.User.FirstName @Model.Topic.User.LastName</p>
+<br />
+<p>@Html.Raw(Model.Topic.Text)</p>
+
+<p style="font-size:15px; margin-top:20px"><b>კომენტარები</b></p>
+<div id="commentBox">
+    @foreach (var item in Model.Comment)
+    {
+        <p><b>@item.User.FirstName @item.User.LastName</b> <span>(@item.CommentDate.ToString("dd/MM/yyyy"))</span> - <span>@item.Comment</span></p>
+    }
+</div>
+
+@{ if (User.Identity.IsAuthenticated)
+    {
+        <textarea id="newComment" data-topicId="@Model.Topic.Id" placeholder="თქვენი კომენტარი"></textarea>
+        <button style="width:200px" id="postNewComment">შენახვა</button>
+    }
+    else
+    {
+        <span>კომენტარის დასაწერად უნდა <a href="~/Account/Login">შეხვიდეთ სისტემაში</a></span>
+    }
+}

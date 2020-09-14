@@ -1,0 +1,58 @@
+﻿@model ProjectZ.Models.ProductExtended
+@{
+    ViewBag.Title = "Details";
+}
+<script src="~/Scripts/Button behaviour/Favourites.js"></script>
+<script src="~/Scripts/Button behaviour/AddToCart.js"></script>
+
+@*<h2>Details</h2>
+    <p>@Model.Product.Name</p>
+    <img src="@Model.Product.Image.Path@Model.Product.Image.Name@Model.Product.Image.Extension" />
+    <p>@Model.Product.Description</p>
+    <p>@Math.Round(Model.Product.Price, 2)</p>
+    @{ if (!Model.IsFavourite)
+        {
+            <p><button class="btn btn-success AddToFavourite" data-productid="@Model.Product.Id">ფავორიტებში დამატება</button></p>
+        }
+        else
+        {
+            <p><button class="btn btn-danger RemoveFromFavourite" data-productid="@Model.Product.Id">ფავორიტებიდან წაშლა</button></p>
+        }
+    }*@
+
+<div class="shop-details">
+    <div class="prod-container">
+        <div class="image-box">
+            <div class="prod-image">
+                <img src="@Model.Product.Image.Path@Model.Product.Image.Name@Model.Product.Image.Extension" style="width:100%;">
+                @{ if (!Model.IsFavourite)
+                    {
+                        <div class="top-right"><i class="fa fa-heart AddToFavourite" data-userAuth="@User.Identity.IsAuthenticated.ToString()" data-productid="@Model.Product.Id"></i></div>
+                    }
+                    else
+                    {
+                        <div class="top-right"><i class="fa fa-heart RemoveFromFavourite" data-userAuth="@User.Identity.IsAuthenticated.ToString()" data-productid="@Model.Product.Id" style="color:red;"></i></div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="prod-details">
+            <div class="prod-details-text">
+                <h5 class="prod-title">
+                    @Model.Product.Name
+                </h5>
+                <h5 class="prod-price">
+                    @Math.Round(Model.Product.Price, 2)
+                </h5>
+                <div class="prod-moreDetails">
+                    <p>ბრენდი:</p>
+                    <p>წონა:</p>
+                </div>
+            </div>
+            <input type="number" class="quantity" value="1">
+            <div class="prod-buttons">
+                <button class="add-toBag AddToCart" data-userAuth="@User.Identity.IsAuthenticated.ToString()" data-productid="@Model.Product.Id">კალათაში დამატება</button>
+            </div>
+        </div>
+    </div>
+</div>

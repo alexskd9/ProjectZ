@@ -1,0 +1,29 @@
+﻿@model ProjectZ.Models.Database.User
+@{
+    ViewBag.Title = "EditPersonalData";
+}
+
+<h2>EditPersonalData</h2>
+<form method="post" action="/Account/EditPersonalData">
+    <div class="form-group">
+        <input class="form-control" type="text" name="FirstName" value="@Model.FirstName" placeholder="სახელი" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="LastName" value="@Model.LastName" placeholder="გვარი" />
+    </div> 
+    <div class="form-group">
+        <input class="form-control" type="text" name="City" value="@Model.City" placeholder="ქალაქი" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="PostalCode" value="@Model.PostalCode" placeholder="საფოსტო ინდექსი" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="Street" value="@Model.Street" placeholder="ქუჩა" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="Appartment" value="@Model.Appartment" placeholder="ბინის ნომერი" />
+    </div>
+    <div class="form-group">
+        <input name="SubmitButton" class="form-control btn-success" type="submit" value="შენახვა" />
+    </div>
+    </form>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="793ac0434ca44d09b11c8627809bc359" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectZModel.FavouriteProduct" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.Group" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.Image" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.Product" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.Sale" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.TopicComment" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.Topic" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.UserCart" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.UserCartProduct" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.User" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectZModel.UserToConfirm" Width="1.5" PointX="10.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="ProjectZModel.FK_FavouriteProducts_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_FavouriteProducts_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_Products_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_Products_Images" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_Topics_Images" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_Sales_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_UserCartProducts_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_Sales_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_TopicComments_Topics" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_Topics_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_UserCart_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_UserCartProducts_UserCart" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectZModel.FK_TopicComments_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

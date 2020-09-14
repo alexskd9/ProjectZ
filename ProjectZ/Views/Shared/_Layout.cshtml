@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link href="~/Content/DropdownList.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/Button behaviour/DropdownList.js"></script>
+    <script src="~/Scripts/Button behaviour/Search.js"></script>
+    <!-- <script src="https://use.fontawesome.com/c9fcc49bd3.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <div class="logo">
+                <img class="logo-img" src="~/Content/images/logo.svg" alt="logo" onclick="document.location='@Url.Action("Index", "Home")'">
+            </div>
+
+            <ul class="nav-links">
+                <li>@Html.ActionLink("მთავარი", "Index", "Home")</li>
+                <li class="dropdown">
+                    @Html.ActionLink("მაღაზია", "AllProducts", "Products")
+                    <!-- <a href="javascript:void(0)" class="dropbtn">მაღაზია</a> -->
+                    <!-- <div class="dropdown-content">
+                <a href="#">ძაღლი</a>
+                <a href="#">კატა</a>
+                <a href="#">მღრღნელი</a>
+                <a href="#">ფრინველი</a>
+            </div> -->
+                </li>
+                <li>@Html.ActionLink("ბლოგი", "AllTopics", "Topic")</li>
+                <li>@Html.ActionLink("ჩვენ შესახებ", "About", "Home")</li>
+            </ul>            
+        </div>
+
+        <div class="nav-right">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <button onclick="document.location='@Url.Action("Cart", "Products")'" class="nav-btn"><i class="fa fa-shopping-bag colorChange"></i></button>
+            }
+            <button id="dropdownbutton" class="nav-btn dropbtn"><i class="fa fa-user colorChange"></i></button>
+            <div id="myDropdown" class="dropdown-content">
+                @{ if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="~/Account/ControlPanel">პირადი კაბინეტი</a>
+                        <a href="~/Products/Cart">კალათა</a>
+                        <a href="~/Products/Favourites">ფავორიტები</a>
+                        <a href="~/Topic/Add">ახალი პოსტი</a>
+                        if ((bool)Session["isAdmin"])
+                        {
+                            <a href="~/Products/AddProduct">საქონლის დამატება</a>
+                        }
+                        <a href="~/Account/Logout">გასვლა</a>
+                    }
+                    else
+                    {
+                        <a href="~/Account/Login">შესვლა</a>
+                        <a href="~/Account/SignUp">რეგისტრაცია</a>
+                    }
+                }
+            </div>
+        </div>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+    <div style="margin-left:auto; margin-right:50px; width:300px"><input type="text" id="searchField" placeholder="ძებნა" /></div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <ul class="footer-list">
+                <li>@Html.ActionLink("მთავარი", "Index", "Home")</li>
+                <li>@Html.ActionLink("მაღაზია", "AllProducts", "Products")</li>
+                <li>@Html.ActionLink("ბლოგი", "AllTopics", "Topic")</li>
+            </ul>
+        </div>
+        <div class="footer-container">
+            <ul class="footer-list">
+                <li><i class="fa fa-phone"></i> 12 123 1234</li>
+                <li><i class="fa fa-map-signs"></i> თბილისი, კალოუბნის 22</li>
+                <li><i class="fa fa-envelope"></i> contact@z4zoo.com</li>
+            </ul>
+        </div>
+        <div class="footer-container">
+            <ul class="footer-list">
+                <li>@Html.ActionLink("ჩვენ შესახებ", "About", "Home")</li>
+                <li class="footer-rights"><i class="fa fa-copyright"></i>@DateTime.Now.Year - ყველა უფლება დაცულია</li>
+            </ul>
+        </div>
+    </footer>
+    <button class="open-button" onclick="openForm()">ონლაინ დახმარება</button>
+    <div class="chat-popup" id="myForm">
+        <form action="#" class="form-container">
+            <h1>მიმოწერა</h1>
+
+            <label for="msg"><b>შეტყობინება</b></label>
+            <textarea placeholder="მოგვწერეთ, ჩვენ მალე გიპასუხებთ" name="msg" required></textarea>
+
+            <button type="submit" class="btn">გაგზავნა</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">დახურვა</button>
+        </form>
+    </div>
+    <script src="~/Scripts/app.js"></script>
+</body>
+</html>

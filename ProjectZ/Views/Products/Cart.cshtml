@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjectZ.Models.Cart>
+@{
+    ViewBag.Title = "Cart";
+}
+<script src="https://kit.fontawesome.com/f0f71dfaf2.js" crossorigin="anonymous"></script>
+<script src="~/Scripts/Button behaviour/Cart.js"></script>
+<div class="cart">
+    <h2>Cart</h2>
+    <form action="/Products/ClearCart" method="post">
+        <input type="submit" name="ClearCart" value="გასუფთავება" />
+    </form>
+    <table class="table table-bordered" id="table">
+        <tr>
+            <th>დასახელება</th>
+            <th>გამოსახულება</th>
+            <th>ფასი</th>
+            <th>რაოდენობა</th>
+            <th>თანხა</th>
+            <th>მეტი</th>
+        </tr>
+        @{
+            if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td><img src="@item.ProductImage" style="width:50px" /></td>
+                        <td>@Math.Round(item.Price, 2)</td>
+                        <td class="quantity">@item.Qty</td>
+                        <td class="price">@Math.Round(item.Price * item.Qty, 2)</td>
+                        <td>
+                            <i data-cartProductId="@item.CartProductId" data-operation="1" class="changeQty fas fa-plus-circle" style="font-size:18px;margin-right:5px"></i>
+                            <i data-cartProductId="@item.CartProductId" data-operation="0" class="changeQty fas fa-minus-circle" style="font-size:18px;margin-right:5px"></i>
+                            <i data-cartProductId="@item.CartProductId" class="removeProduct fas fa-trash" style="font-size:18px"></i>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+        <tr>
+            <td>ჯამი</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td id="totalAmount">@Math.Round(ViewBag.CartAmount, 2)</td>
+            <td></td>
+        </tr>
+    </table>
+    <form action="~/Products/Purchase">
+        @{
+            if (ViewBag.CartAmount == 0)
+            {
+                <input type="submit" disabled value="გაგრძელება" />
+            }
+            else
+            {
+                <input type="submit" value="გაგრძელება" />
+            }
+        }
+
+    </form>
+</div>

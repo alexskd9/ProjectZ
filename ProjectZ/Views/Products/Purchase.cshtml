@@ -1,0 +1,34 @@
+﻿@model ProjectZ.Models.PurchaseClass
+@{
+    ViewBag.Title = "შეძენა";
+}
+
+<h2 class="purchase">შეძენა</h2>
+<form action="~/Products/Purchase" method="post">
+    <span style="font-size:20px">გადაამოწმეთ თქვენი მონაცემები და დააჭირეთ შეძენის ღილაკს</span>
+    <div class="form-group" style="margin-top:10px">
+        <input class="form-control" type="text" name="FirstName" id="FirstName" placeholder="სახელი" value="@Model.FirstName" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="LastName" id="LastName" placeholder="გვარი" value="@Model.LastName" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="City" id="City" placeholder="ქალაქი" value="@Model.City" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="PostalCode" id="PostalCode" placeholder="საფოსტო ინდექსი" value="@Model.PostalCode" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="Street" id="Street" placeholder="ქუჩა" value="@Model.Street" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="Appartments" id="Appartments" placeholder="ბინა" value="@Model.Appartments" />
+    </div>
+    <div class="form-group">
+        <label style="font-size:20px; margin-right:5px">თანხა:</label>
+        <span style="font-size:20px"><strong>@Math.Round(Model.TotalAmount, 2) ₾</strong></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="შეძენა" />
+    </div>
+</form>

@@ -1,0 +1,44 @@
+﻿@model ProjectZ.Models.Account.Registration
+@{
+    ViewBag.Title = "რეგისტრაცია";
+}
+
+<h2 class="signupform">ახალი მომხმარებლის რეგისტრაცია</h2>
+<form method="post" action="/Account/SignUp" class="form-sizes">
+    <div class="form-group">
+        <input class="form-control" type="text" name="Name" placeholder="სახელი" />
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="Surname" placeholder="გვარი" />
+        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="Email" placeholder="ელ. ფოსტა" />
+        <p style="color:red">@ViewBag.errorMsg</p>
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="password" name="Password" placeholder="პაროლი" />
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="password" name="RepeatPassword" placeholder="გაიმეორეთ პაროლი" />
+        @Html.ValidationMessageFor(model => model.RepeatPassword, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="City" placeholder="ქალაქი" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="PostalCode" placeholder="საფოსტო ინდექსი" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="Street" placeholder="ქუჩა" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="text" name="Appartments" placeholder="ბინის ნომერი" />
+    </div>
+    <div class="form-group">
+        <input name="SubmitButton" class="form-control btn-success formbutton" type="submit" value="რეგისტრაცია" />
+    </div>
+</form>

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ProjectZ.Models.Database.FavouriteProduct>
+@{
+    ViewBag.Title = "ფავორიტები";
+}
+    <script src="~/Scripts/Button behaviour/Favourites.js"></script>
+<h2 class="favourites">ფავორიტები</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>სურათი</th>
+        <th>დასახელება</th>
+        <th>მეტი</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Product.Name</td>
+            <td><img src="@item.Product.Image.Path@item.Product.Image.Name@item.Product.Image.Extension" style="width:150px"/></td>
+            <td><button class="btn btn-danger RemoveFromFavourite" data-productid="@item.Product.Id">ფავორიტებიდან წაშლა</button></td>
+        </tr>
+    }
+</table>

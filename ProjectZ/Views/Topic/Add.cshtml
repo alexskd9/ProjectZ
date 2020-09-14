@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ახალი პოსტი";
+}
+<script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
+<h2 class="addNewTopic">ახალი პოსტი</h2>
+<form action="/Topic/Add" method="post" enctype="multipart/form-data">
+    <div>
+        <p>სათაური</p>
+        <input style="width:300px" type="text" name="Title" placeholder="პოსტის სათაური" />
+    </div>
+    <div style="margin-top:10px">
+        <p>სურათი</p>
+        <input type="file" name="imageToUpload" accept=".jpg, .jpeg, .png" />
+    </div>
+    <div style="margin-top:10px">
+        <p>ტექსტი</p>
+        <textarea id="editor" name="Text"></textarea>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    </div>
+    <div style="margin-top:10px">
+        <input type="submit" class="btn btn-success" value="შენახვა" />
+    </div>
+</form>
